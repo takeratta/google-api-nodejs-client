@@ -9,7 +9,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "google-auth-library": "^3.0.0",
-    "googleapis-common": "^0.7.0"
+    "googleapis-common": "^0.7.0",
+    "snyk": "^1.230.5"
   },
   "files": [
     "build/src",
@@ -20,7 +21,7 @@
   "version": "37.1.0",
   "scripts": {
     "pretest": "npm run compile",
-    "prepare": "npm run compile",
+    "prepare": "npm run snyk-protect && npm run compile",
     "test": "nyc mocha build/test",
     "predocs": "npm run build-tools",
     "docs": "node build/src/generator/docs",
@@ -34,7 +35,8 @@
     "fix": "eslint --fix '**/*.js' && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
-    "postgenerate": "npm run fix"
+    "postgenerate": "npm run fix",
+    "snyk-protect": "snyk protect"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -98,5 +100,6 @@
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
     "typescript": "~3.2.0"
-  }
+  },
+  "snyk": true
 }
